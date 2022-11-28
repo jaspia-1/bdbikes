@@ -1,17 +1,68 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [buyorseller, setBuyOrSerller] = useState('Buyer');
     const [signUpError, setSignUpError] = useState('');
+    const { signup, login, user, loading, seLoading, logOut, updateInfo, saveUser } = useContext(AuthContext)
+    const imageHostKey = process.env.REACT_APP_imgbb;
+
+    const handleToSubmit = data => {
+        const img = data.img[0];
+        const formData = new FormData();
+        formData.append('image', img);
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imageData => {
+                if (imageData.success) {
+                    signup(data.email, data.password)
+                        .then(result => {
+                            const user = result.user;
+                            console.log(user)
+                            const userInfo = {
+                                displayName: data.name,
+                                photoURL: imageData.data.url
+
+                            }
+                            updateInfo(userInfo)
+                                .then(() => {
+                                    saveUser(data.name, data.email, data.buyeorseller, imageData.data.url)
+                                        .then(result => result.json())
+                                        .then(success => {
+                                            console.log(success)
+                                            console.log(user)
+
+
+                                        })
+                                        .catch(err => console.log(err))
+                                })
+                                .catch(() => { })
+                        })
+                        .catch(error => {
+                            seLoading(false)
+
+                        })
+                }
+            })
+
+    }
     return (
         <div >
             <div className='border rounded-lg  m-3.5 container bg-gradient-to-r  from-slate-900 to-slate-800 mx-auto max-w-md p-3 '>
 
 
-                <form onSubmit={handleSubmit()} className=" ">
+                <form onSubmit={handleSubmit(handleToSubmit)} className=" ">
+                    <p className="pacifico my-2 text-right  flex text-orange-500 items-center font-bold  text-xl">
+                        Bd Bikes
+
+                    </p>
                     <h4 className="text-2xl text-center my-2 bebas  p-2 rounded-lg text-orange-500" >Sign Up</h4>
 
                     <div className="form-control w-full  ">
