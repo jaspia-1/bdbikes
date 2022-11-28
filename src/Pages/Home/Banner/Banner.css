@@ -1,0 +1,18 @@
+.bannr {
+    background-image: linear-gradient(-90deg, rgba(29, 28, 28, 0.76), rgba(0, 0, 0, 0.733)), url('../../../../public/assets/banner3.png');
+    min-height: 600px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.transparent {
+    background-color: rgba(0, 204, 255, 0.322);
+}
+
+.hover-brand:hover {
+    border: 2px solid rgb(243, 119, 140);
+    border-radius: 5px;
+
+
+}

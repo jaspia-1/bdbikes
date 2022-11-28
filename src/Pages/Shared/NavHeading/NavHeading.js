@@ -6,7 +6,7 @@ const NavHeading = () => {
         <li className='my-2 mx-2'><Link to='/blog'>Blog</Link></li>
         <li className='my-2 mx-2 '><Link to='/dashboard'>Dashboard</Link></li></>
     return (
-        <div className=' bg-gray-100 shadow-lg'>
+        <div className=' bg-slate-800 text-white shadow-lg'>
             <div className=" navbar  container mx-auto">
                 <div className="navbar-start " >
                     <div className="dropdown">
@@ -17,7 +17,7 @@ const NavHeading = () => {
                             {menu}
                         </ul>
                     </div>
-                    <Link to='/' className="pacifico my-2 flex items-center font-bold  text-xl">
+                    <Link to='/' className="pacifico my-2 flex text-orange-600 items-center font-bold  text-xl">
                         Bd Bikes
 
                     </Link>
