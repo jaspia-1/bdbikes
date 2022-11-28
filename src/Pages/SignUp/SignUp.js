@@ -145,7 +145,7 @@ const SignUp = () => {
 
                     <div className='w-full text-center my-2'>
 
-                        <input type="submit" className='btn   w-full ' value="Sign Up" />
+                        <input type="submit" className='btn btn-accent  w-full ' value="Sign Up" />
                     </div>
                     <p className='mt-3 text-center text-orange-500 '>Already have an account?<Link to='/login' className='text-secondary mx-2'>Login</Link></p>
                     {
