@@ -1,20 +1,37 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hooks/useToken';
+
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const { user, login, saveUser, seLoading, loading } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('');
+    const [loggedUserEmail, setLoggedUserEmail] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [token] = useToken(loggedUserEmail);
+    const from = location.state?.from?.pathname || '/';
+    useEffect(() => {
+        if (token) {
+            toast.success('Logged in');
+            navigate(from, { replace: true })
+            console.log("dhukse")
+            seLoading(false)
+
+        }
+    }, [token])
     const handleToLogin = (data) => {
         seLoading(true)
         login(data.email, data.password)
             .then(res => {
 
                 console.log(res.user)
-
+                setLoggedUserEmail(res.user.email);
 
 
 
@@ -22,6 +39,8 @@ const Login = () => {
             )
             .catch(err => {
                 seLoading(false)
+                toast.error(err.message)
+
 
             })
     }

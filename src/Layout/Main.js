@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 import { Outlet } from 'react-router-dom';
 import NavHeading from '../Pages/Shared/NavHeading/NavHeading';
 
@@ -7,6 +8,8 @@ const Main = () => {
         <div>
             <NavHeading></NavHeading>
             <Outlet></Outlet>
+            <Toaster />
+
         </div>
     );
 };

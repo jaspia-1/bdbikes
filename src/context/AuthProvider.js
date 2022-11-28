@@ -30,6 +30,22 @@ const AuthProvider = ({ children }) => {
     const googleSignIn = () => {
         return signInWithPopup(auth, gProvider)
     }
+    const saveUser = (name, email, role, img) => {
+        const user = {
+            name,
+            email,
+            role,
+            img
+        }
+        return fetch('http://localhost:5000/user', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user)
+        })
+
+    }
 
 
     useEffect(() => {
@@ -42,7 +58,7 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, [])
 
-    const authInfo = { signup, seLoading, loading, login, userRoll, working, setUserRoll, user, logOut, updateInfo, googleSignIn, isverified, setIsVerified, currentYear }
+    const authInfo = { signup, seLoading, loading, login, saveUser, userRoll, working, setUserRoll, user, logOut, updateInfo, googleSignIn, isverified, setIsVerified, currentYear }
 
     return (
         <AuthContext.Provider value={authInfo}>

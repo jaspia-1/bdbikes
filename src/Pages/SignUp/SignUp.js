@@ -1,7 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hooks/useToken';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const SignUp = () => {
@@ -9,8 +11,19 @@ const SignUp = () => {
     const [buyorseller, setBuyOrSerller] = useState('Buyer');
     const [signUpError, setSignUpError] = useState('');
     const { signup, login, user, loading, seLoading, logOut, updateInfo, saveUser } = useContext(AuthContext)
-    const imageHostKey = process.env.REACT_APP_imgbb;
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
 
+    const imageHostKey = process.env.REACT_APP_imgbb;
+    const [token] = useToken(createdUserEmail);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (token) {
+
+            navigate('/')
+            seLoading(false)
+
+        }
+    }, [token]);
     const handleToSubmit = data => {
         const img = data.img[0];
         const formData = new FormData();
@@ -39,7 +52,7 @@ const SignUp = () => {
                                         .then(success => {
                                             console.log(success)
                                             console.log(user)
-
+                                            setCreatedUserEmail(user.email)
 
                                         })
                                         .catch(err => console.log(err))
@@ -48,6 +61,7 @@ const SignUp = () => {
                         })
                         .catch(error => {
                             seLoading(false)
+                            toast.error(error.message)
 
                         })
                 }

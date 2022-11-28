@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
@@ -23,6 +24,7 @@ const SocialLogin = () => {
                         console.log(success)
                         console.log(res.user)
                         setLoggedUserEmail(res.user.email)
+                        toast.success('Logged in Successfully')
                     })
                     .catch(err => console.log(err))
                 console.log('successfully loggd in ')
