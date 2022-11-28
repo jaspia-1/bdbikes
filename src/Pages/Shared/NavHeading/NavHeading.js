@@ -17,7 +17,7 @@ const NavHeading = () => {
                             {menu}
                         </ul>
                     </div>
-                    <Link to='/' className="pacifico my-2 flex text-orange-600 items-center font-bold  text-xl">
+                    <Link to='/' className="pacifico my-2 flex text-orange-500 items-center font-bold  text-xl">
                         Bd Bikes
 
                     </Link>
