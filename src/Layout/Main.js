@@ -1,9 +1,10 @@
 import React from 'react';
+import NavHeading from '../Pages/Shared/NavHeading/NavHeading';
 
 const Main = () => {
     return (
         <div>
-            <h1>this is main</h1>
+            <NavHeading></NavHeading>
         </div>
     );
 };
