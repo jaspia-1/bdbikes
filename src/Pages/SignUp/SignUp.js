@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -152,7 +153,7 @@ const SignUp = () => {
                     }
                     <div className=" text-orange-500 divider">OR</div>
                 </form>
-
+                <SocialLogin></SocialLogin>
             </div>
         </div>
     );
