@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layout/Main';
 import Bikes from '../Pages/Bikes/Bikes';
+import Blog from '../Pages/Blog/Blog';
 import AddProduct from '../Pages/Dashboards/AddProduct/AddProduct';
 import AllBuyers from '../Pages/Dashboards/AllBuyers/AllBuyers';
 import AllSellers from '../Pages/Dashboards/AllSellers/AllSellers';
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
                 element: <Bikes></Bikes>,
                 loader: async ({ params }) => fetch(`http://localhost:5000/catagory/${params.id}`)
             },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
+            }
 
         ],
     },
