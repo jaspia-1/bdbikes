@@ -31,3 +31,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+hover-li:hover {
+  border: 1px solid gray;
+}
+
+hover-li {
+  font-family: 'Bebas Neue', cursive;
+
+}
