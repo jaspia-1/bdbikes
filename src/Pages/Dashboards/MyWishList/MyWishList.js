@@ -73,7 +73,6 @@ const MyWishList = () => {
                         }
 
 
-
                     </tbody>
                 </table>
             </div>

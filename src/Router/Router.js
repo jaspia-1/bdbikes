@@ -3,6 +3,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layout/Main';
 import Bikes from '../Pages/Bikes/Bikes';
 import AddProduct from '../Pages/Dashboards/AddProduct/AddProduct';
+import AllBuyers from '../Pages/Dashboards/AllBuyers/AllBuyers';
+import AllSellers from '../Pages/Dashboards/AllSellers/AllSellers';
 
 import Dashbaords from '../Pages/Dashboards/Dashbaords';
 import MyOrders from '../Pages/Dashboards/MyOrders/MyOrders';
@@ -14,6 +16,7 @@ import Login from '../Pages/Login/Login';
 import SignUp from '../Pages/SignUp/SignUp';
 import Private from '../Private/Private';
 import SellerRoute from '../Private/SellerRoute';
+import AdminRouteProtect from './AdminRouteProtect/AdminRouteProtect';
 
 const router = createBrowserRouter([
     {
@@ -64,6 +67,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders',
                 element: <Private><MyOrders></MyOrders> </Private>
+            },
+            {
+                path: '/dashboard/allsellers',
+                element: <AdminRouteProtect><AllSellers></AllSellers></AdminRouteProtect>
+            },
+            {
+                path: '/dashboard/allbuyers',
+                element: <AdminRouteProtect><AllBuyers></AllBuyers></AdminRouteProtect>
             },
         ]
     }
