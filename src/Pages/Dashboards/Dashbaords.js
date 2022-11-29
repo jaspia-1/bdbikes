@@ -13,6 +13,7 @@ const Dashbaords = () => {
     return (
         <div>
             <NavHeading></NavHeading>
+            <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button btn-sm md:hidden">Dashboard Options</label>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">

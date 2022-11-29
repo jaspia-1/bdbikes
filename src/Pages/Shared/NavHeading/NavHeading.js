@@ -53,7 +53,7 @@ const NavHeading = () => {
 
                     </Link>
                 </div>
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button btn-sm lg:hidden">Dashboard Options</label>
+
                 <div className="navbar-end hidden  lg:flex">
                     <ul className="menu menu-horizontal  p-0">
                         {menu}

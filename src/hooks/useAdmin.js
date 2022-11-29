@@ -14,7 +14,7 @@ const useAdmin = (email) => {
                 // console.log(data)
                 setIsAdmin(data.isAdmin)
                 if (data.isAdmin) {
-                    setUserRoll('Admin')
+                    setUserRoll('admin')
                 }
                 setAdminLoadin(false)
             })
