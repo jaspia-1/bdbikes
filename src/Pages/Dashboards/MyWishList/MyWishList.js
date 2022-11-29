@@ -64,7 +64,7 @@ const MyWishList = () => {
                                 <td>{bike.price}</td>
                                 <td>{
 
-                                    (bike?.issold && bike?.newOwner === bike.email) ? <div className='text-end'><p className='roboto'>Paid <br /> </p> <p className='text-xl text-slate-500'>You won the item</p></div> : (bike?.issold) ? <div><p className='roboto'>Sold</p></div> :
+                                    (bike?.issold && bike?.newOwner === bike.email) ? <div className=' font-semibold'><p className='roboto'>Paid <br /> </p> <p className='text-xl text-slate-500'>You won the item</p></div> : (bike?.issold) ? <div><p className='roboto'>Sold</p></div> :
                                         <Link to={`/dashboard/payment/${bike.serial}`}><button className='btn btn-primary  '>Pay</button></Link>
                                 }
 

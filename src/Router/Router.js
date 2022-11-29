@@ -13,6 +13,7 @@ import MyWishList from '../Pages/Dashboards/MyWishList/MyWishList';
 import WelcomeDashboard from '../Pages/Dashboards/Welcome/WelcomeDashboard';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
+import Payment from '../Pages/Shared/Payment';
 import SignUp from '../Pages/SignUp/SignUp';
 import Private from '../Private/Private';
 import SellerRoute from '../Private/SellerRoute';
@@ -75,6 +76,12 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allbuyers',
                 element: <AdminRouteProtect><AllBuyers></AllBuyers></AdminRouteProtect>
+            },
+            {
+
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: async ({ params }) => fetch(`http://localhost:5000/payinfo/${params.id}`)
             },
         ]
     }
