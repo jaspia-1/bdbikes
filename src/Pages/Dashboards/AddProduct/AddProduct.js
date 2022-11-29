@@ -1,18 +1,90 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const AddProduct = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const { user, isverified, setUserRoll, logOut } = useContext(AuthContext)
     const imageHostKey = process.env.REACT_APP_imgbb;
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    const handleAddProduct = (data) => {
+        console.log(data.img[0])
+        console.log(data)
+        const img = data.img[0];
+        const formData = new FormData();
+        formData.append('image', img);
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imageData => {
+
+
+                if (imageData.success) {
+
+                    const product = {
+                        name: data.name,
+                        email: user.email,
+                        price: data.price,
+                        img: imageData.data.url,
+                        catagory: data.catagory,
+                        orginalprice: data.orginalprice,
+                        year: data.year,
+                        location: data.location,
+                        phone: data.phone,
+                        condition: data.condition,
+                        description: data.description,
+                        sellername: user.displayName,
+                        verifiedSeller: isverified,
+                        issold: false,
+                        newOwner: "",
+                        txnid: ""
+
+                    }
+
+                    fetch('http://localhost:5000/productadd', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => {
+                            if (res.status === 403) {
+                                setUserRoll('Buyer')
+                                logOut()
+                                    .then(() => {
+                                        localStorage.removeItem("accessToken");
+                                        navigate(from, { replace: true })
+                                    })
+                            }
+                            return res.json()
+                        })
+                        .then(result => {
+                            console.log(result);
+                            toast.success(`${data.name} is added`)
+
+                            navigate('/dashboard/myproducts')
+
+                        })
+                }
+            })
+    }
+
     return (
         <div className='my-6'>
 
 
             <div className='border rounded-lg  m-3.5 container mx-auto max-w-md p-3'>
 
-                <form onSubmit={handleSubmit()} className="mb-11">
+                <form onSubmit={handleSubmit(handleAddProduct)} className=" mb-40 ">
                     <h1 className='text-6xl my-3 mx-3 bebas'>Add  Product</h1>
 
                     <div className="form-control w-full  ">
@@ -25,7 +97,6 @@ const AddProduct = () => {
 
                         })} />
                         {errors.name && <p className='text-red-600 py-2' role="alert">{errors.name?.message}</p>}
-
 
                     </div>
                     <div className="form-control w-full  ">
