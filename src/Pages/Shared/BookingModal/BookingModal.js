@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 import { AuthContext } from '../../../context/AuthProvider';
 
 const BookingModal = ({ setSelectedData, selectedData }) => {
     const { user } = useContext(AuthContext);
-    console.log(selectedData)
+
+
+    const navigate = useNavigate()
+
     const handleBooking = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -12,6 +17,7 @@ const BookingModal = ({ setSelectedData, selectedData }) => {
         const email = form.email.value;
         const phone = form.phone.value;
         const location = form.location.value;
+
         const booking = {
             buyer: name,
             price: selectedData.price,

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
 import useSeller from '../../hooks/useSeller';
@@ -15,8 +15,12 @@ const Bikes = () => {
     const { userRoll, user } = useContext(AuthContext)
     const [isSeller] = useSeller(user?.email)
     const [isAdmin] = useAdmin(user?.email)
+    const navigate = useNavigate()
     console.log(bikes)
     const handleWishlist = car => {
+        if (!user || !user?.email) {
+            return navigate('/login')
+        }
         car.email = user.email;
 
         fetch('http://localhost:5000/wishlist', {
@@ -46,10 +50,16 @@ const Bikes = () => {
             }
             <div className='container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-3'>
                 {
-                    bikes.map(car => <BikeProduct key={car._id} product={car}>{(userRoll !== 'admin' && user) && <div className=' flex justify-between'>
-                        {userRoll !== 'admin' && <p>
-                            <label htmlFor="booking-model" className='btn btn-primary  btn-sm mx-2 my-2' onClick={() => setSelectedData(car)}>Book Now</label>
-                            <button className='btn btn-gray btn-sm mx-2 my-2 ' onClick={() => handleWishlist(car)}>Add on WishList</button></p>}
+                    bikes.map(bike => <BikeProduct key={bike._id} product={bike}>{(userRoll !== 'admin') && <div className=' flex justify-between'>
+
+                        <label htmlFor="booking-model" className='btn btn-primary  btn-sm mx-2 my-2' onClick={() => {
+                            if (!user || !user?.email) {
+                                return navigate('/login')
+                            }
+
+                            setSelectedData(bike)
+                        }}>Book Now</label>
+                        <button className='btn btn-gray btn-sm mx-2 my-2 ' onClick={() => handleWishlist(bike)}>Add on WishList</button>
                     </div>}</BikeProduct>)
                 }
             </div>

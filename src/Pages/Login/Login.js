@@ -88,9 +88,9 @@ const Login = () => {
 
                     <div className='w-full text-center my-2'>
 
-                        <input type="submit" className='btn btn-accent my-4   w-full ' value="Sign Up" />
+                        <input type="submit" className='btn btn-accent my-4   w-full ' value="Login" />
                     </div>
-                    <p className='mt-3 text-center text-orange-500'>New Here?<Link to='/signup' className='text-secondary mx-2'>SignUp</Link></p>
+                    <p className='mt-3 text-center text-orange-500'>New Here?<Link to='/signup' className='text-secondary mx-2'>Sign Up</Link></p>
                     {
                         signUpError && <p className='text-red-600'>{signUpError}</p>
                     }
