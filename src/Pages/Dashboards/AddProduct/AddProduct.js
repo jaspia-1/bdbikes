@@ -133,8 +133,8 @@ const AddProduct = () => {
                                 <span className="label-text">Year Of purchase</span>
                             </label>
 
-                            <input type="number" placeholder="Price" className=" input input-bordered w-full "  {...register("year", {
-                                required: "GIve the original  a Price",
+                            <input type="number" placeholder="Year" className=" input input-bordered w-full "  {...register("year", {
+                                required: "GIve the year of purchase  ",
 
                             })} />
                             {errors.year && <p className='text-red-600 py-2' role="alert">{errors.year?.message}</p>}
