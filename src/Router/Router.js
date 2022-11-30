@@ -14,6 +14,8 @@ import MyWishList from '../Pages/Dashboards/MyWishList/MyWishList';
 import WelcomeDashboard from '../Pages/Dashboards/Welcome/WelcomeDashboard';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
+import ReportedItem from '../Pages/ReportedItem/ReportedItem';
+import Error from '../Pages/Shared/Error/Error';
 import Payment from '../Pages/Shared/Payment';
 import SignUp from '../Pages/SignUp/SignUp';
 import Private from '../Private/Private';
@@ -24,6 +26,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
@@ -77,6 +80,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allsellers',
                 element: <AdminRouteProtect><AllSellers></AllSellers></AdminRouteProtect>
+            },
+            {
+                path: '/dashboard/reporteditem',
+                element: <AdminRouteProtect><ReportedItem></ReportedItem> </AdminRouteProtect>
             },
             {
                 path: '/dashboard/allbuyers',
