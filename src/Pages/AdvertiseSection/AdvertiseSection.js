@@ -17,7 +17,7 @@ const AdvertiseSection = () => {
     const [alterSeletedData, setAlterSelectedData] = useState(null);
     const navigate = useNavigate()
     useEffect(() => {
-        axios.get('http://localhost:5000/advertise')
+        axios.get('https://bdbikeserver.vercel.app/advertise')
             .then(data => setAdBike(data.data))
     }, [])
     const handleWishlist = bike => {
@@ -26,7 +26,7 @@ const AdvertiseSection = () => {
         }
         bike.email = user.email;
         bike._id = bike.serial;
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://bdbikeserver.vercel.app/wishlist', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

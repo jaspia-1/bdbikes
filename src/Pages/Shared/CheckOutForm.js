@@ -17,7 +17,7 @@ const CheckOutForm = ({ booking }) => {
     console.log(price)
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://bdbikeserver.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const CheckOutForm = ({ booking }) => {
 
 
             }
-            fetch(`http://localhost:5000/payment`, {
+            fetch(`https://bdbikeserver.vercel.app/payment`, {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json",

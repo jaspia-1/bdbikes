@@ -7,7 +7,7 @@ const useSeller = (email) => {
     const { isverified, setIsVerified, userRoll, setUserRoll } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/seller?email=${email}`)
+        fetch(`https://bdbikeserver.vercel.app/user/seller?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 setIsSeller(data.isSeller)

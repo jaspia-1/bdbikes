@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
             role,
             img
         }
-        return fetch('http://localhost:5000/user', {
+        return fetch('https://bdbikeserver.vercel.app/user', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

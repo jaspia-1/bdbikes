@@ -8,7 +8,7 @@ const useToken = (email) => {
     const [token, setToken] = useState('')
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/jwt?email=${email}`)
+            fetch(`https://bdbikeserver.vercel.app/jwt?email=${email}`)
                 .then(res => {
                     if (res.status === 403) {
                         toast.error('Acoount delted')

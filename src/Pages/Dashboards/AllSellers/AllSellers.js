@@ -6,7 +6,7 @@ import Spinner from '../../Shared/Spinner/Spinner';
 
 const AllSellers = () => {
     const { user } = useContext(AuthContext);
-    const uri = `http://localhost:5000/user?email=${user.email}&&role=Seller`
+    const uri = `https://bdbikeserver.vercel.app/user?email=${user.email}&&role=Seller`
     const { data: sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['user', user.email],
         queryFn: async () => {
@@ -22,7 +22,7 @@ const AllSellers = () => {
     console.log(sellers)
 
     const handleVerify = seller => {
-        fetch(`http://localhost:5000/verify?email=${user.email}`, {
+        fetch(`https://bdbikeserver.vercel.app/verify?email=${user.email}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const AllSellers = () => {
         return <Spinner></Spinner>
     }
     const handleToDelete = seller => {
-        fetch(`http://localhost:5000/userdelete?email=${user.email}&&selleremail=${seller.email}`, {
+        fetch(`https://bdbikeserver.vercel.app/userdelete?email=${user.email}&&selleremail=${seller.email}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

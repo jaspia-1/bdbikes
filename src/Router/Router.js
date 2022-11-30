@@ -40,7 +40,7 @@ const router = createBrowserRouter([
             {
                 path: '/catagory/:id',
                 element: <Bikes></Bikes>,
-                loader: async ({ params }) => fetch(`http://localhost:5000/catagory/${params.id}`)
+                loader: async ({ params }) => fetch(`https://bdbikeserver.vercel.app/catagory/${params.id}`)
             },
             {
                 path: '/blog',
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
 
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: async ({ params }) => fetch(`http://localhost:5000/payinfo/${params.id}`)
+                loader: async ({ params }) => fetch(`https://bdbikeserver.vercel.app/payinfo/${params.id}`)
             },
         ]
     }

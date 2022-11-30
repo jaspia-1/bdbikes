@@ -34,7 +34,7 @@ const BookingModal = ({ setSelectedData, selectedData }) => {
 
         }
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://bdbikeserver.vercel.app/booking', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

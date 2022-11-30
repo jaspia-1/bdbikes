@@ -11,7 +11,7 @@ const MyProducts = () => {
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    const uri = `http://localhost:5000/product?email=${user.email}`
+    const uri = `https://bdbikeserver.vercel.app/product?email=${user.email}`
     const { data: bikes = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user.email],
         queryFn: async () => {
@@ -44,7 +44,7 @@ const MyProducts = () => {
     }
     console.log(bikes)
     const handleDelete = bike => {
-        fetch(`http://localhost:5000/singlebike/${bike._id}`, {
+        fetch(`https://bdbikeserver.vercel.app/singlebike/${bike._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -62,7 +62,7 @@ const MyProducts = () => {
             })
     }
     const handleAvailable = bike => {
-        fetch(`http://localhost:5000/available`, {
+        fetch(`https://bdbikeserver.vercel.app/available`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const MyProducts = () => {
             })
     }
     const handleSold = bike => {
-        fetch(`http://localhost:5000/sold`, {
+        fetch(`https://bdbikeserver.vercel.app/sold`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -113,7 +113,7 @@ const MyProducts = () => {
 
         }
 
-        fetch('http://localhost:5000/advertise', {
+        fetch('https://bdbikeserver.vercel.app/advertise', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

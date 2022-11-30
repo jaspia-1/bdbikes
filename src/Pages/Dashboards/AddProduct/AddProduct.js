@@ -48,7 +48,7 @@ const AddProduct = () => {
 
                     }
 
-                    fetch('http://localhost:5000/productadd', {
+                    fetch('https://bdbikeserver.vercel.app/productadd', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

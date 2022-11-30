@@ -8,7 +8,7 @@ const MyOrders = () => {
     const { user, logOut, setUserRoll } = useContext(AuthContext);
     let navigate = useNavigate();
     let location = useLocation();
-    const uri = `http://localhost:5000/bookinglist?email=${user.email}`
+    const uri = `https://bdbikeserver.vercel.app/bookinglist?email=${user.email}`
     let from = location.state?.from?.pathname || "/";
     const { data: bikes = [], isLoading } = useQuery({
         queryKey: ['wishlist', user.email],

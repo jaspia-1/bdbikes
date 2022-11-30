@@ -23,7 +23,7 @@ const Bikes = () => {
         }
         car.email = user.email;
 
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://bdbikeserver.vercel.app/wishlist', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
