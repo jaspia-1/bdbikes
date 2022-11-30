@@ -15,7 +15,7 @@ import WelcomeDashboard from '../Pages/Dashboards/Welcome/WelcomeDashboard';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import ReportedItem from '../Pages/ReportedItem/ReportedItem';
-import Error from '../Pages/Shared/Error/Error';
+import ErrorPage from '../Pages/Shared/ErrorPage/ErrorPage';
 import Payment from '../Pages/Shared/Payment';
 import SignUp from '../Pages/SignUp/SignUp';
 import Private from '../Private/Private';
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
-        errorElement: <Error></Error>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
